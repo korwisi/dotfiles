@@ -51,7 +51,7 @@ case $OPSYS in
 	;;
     Linux)
 	if [ $(uname -n) == "schopenhauer" ]; then
-	     make less more friendly for non-text input files, see lesspipe(1)
+	     # make less more friendly for non-text input files, see lesspipe(1)
 	     [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 	     # set variable identifying the chroot you work in (used in the prompt below)
@@ -120,7 +120,7 @@ case $OPSYS in
 	     # sources /etc/bash.bashrc).
 	     if ! shopt -oq posix; then
 		 if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
+		     . /usr/share/bash-completion/bash_completion
 		 elif [ -f /etc/bash_completion ]; then
 		     . /etc/bash_completion
 		 fi
