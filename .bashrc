@@ -47,6 +47,7 @@ case $OPSYS in
         # POWERLINE_BASH_CONTINUATION=1
         # POWERLINE_BASH_SELECT=1
         # source /usr/local/lib/python3.8/site-packages/powerline/bindings/bash/powerline.sh
+	export PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
 	eval "$(starship init bash)"
 	;;
     Linux)
