@@ -28,6 +28,12 @@ shopt -s checkwinsize
 alias ..='cd ..'
 alias ll="ls -lah"
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+	
+##################
+## Global evals ##
+##################
+
+eval "$(starship init bash)"
 
 #######################
 ## Machine-dependend ##
@@ -48,7 +54,6 @@ case $OPSYS in
         # POWERLINE_BASH_SELECT=1
         # source /usr/local/lib/python3.8/site-packages/powerline/bindings/bash/powerline.sh
 	export PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
-	eval "$(starship init bash)"
 	;;
     Linux)
 	if [ $(uname -n) == "schopenhauer" ]; then
@@ -137,15 +142,16 @@ case $OPSYS in
 	     export EDITOR="/home/kristof/.local/bin/vv"
 	     
 	     PATH=$HOME/.local/bin:~/anaconda3/bin:$PATH
-	     export POWERLINE_COMMAND=powerline
-	     export POWERLINE_CONFIG_COMMAND=powerline-config
-	     POWERLINE_BASH_CONTINUATION=1
-	     POWERLINE_BASH_SELECT=1
-	     . ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
-	     
-	     if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
-		 source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
-	     fi
+
+	     # export POWERLINE_COMMAND=powerline
+	     # export POWERLINE_CONFIG_COMMAND=powerline-config
+	     # POWERLINE_BASH_CONTINUATION=1
+	     # POWERLINE_BASH_SELECT=1
+	     # . ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+	     # 
+	     # if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
+	     #     source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+	     # fi
 	     
 	     # HCI Teaching Settings
 	     export LECTURE_BASE=/media/kristof/misc/inf4all/teaching
