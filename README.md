@@ -4,7 +4,8 @@ This is a bare gite repository for storing my dotfiles. Help yourself if it is o
 
 ## Initialization
 
-Initialized by  `git init --bare $HOME/dotfiles`
+* Initialized with  `git init --bare $HOME/dotfiles`.
+* Clone with `git clone --bare $HOME/dotfiles`.
 
 ## Configuration
 
