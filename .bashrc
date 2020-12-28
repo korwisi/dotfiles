@@ -57,6 +57,7 @@ case $OPSYS in
 	;;
     Linux)
 	if [ $(uname -n) == "schopenhauer" ]; then
+	     ## Some Ubuntu standard settings
 	     # make less more friendly for non-text input files, see lesspipe(1)
 	     [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -143,6 +144,7 @@ case $OPSYS in
 	     
 	     PATH=$HOME/.local/bin:~/anaconda3/bin:$PATH
 
+             ## If powerline is used instead of, e.g., starship
 	     # export POWERLINE_COMMAND=powerline
 	     # export POWERLINE_CONFIG_COMMAND=powerline-config
 	     # POWERLINE_BASH_CONTINUATION=1
@@ -152,12 +154,5 @@ case $OPSYS in
 	     # if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
 	     #     source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
 	     # fi
-	     
-	     # HCI Teaching Settings
-	     export LECTURE_BASE=/media/kristof/misc/inf4all/teaching
-	     export TEXINPUTS=/media/kristof/misc/inf4all/teaching/templates/latex::./templates
-	     export BIBINPUTS=/media/kristof/misc/inf4all/teaching/../literature/bibliographies:./bibliographies/:.build/:
-	     
-	     #. $LECTURE_BASE/tools/environment.sh
 	fi
 esac
