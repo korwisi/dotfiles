@@ -1,6 +1,9 @@
 ;; Disable the splash screen (to enable it agin, replace the t with 0)
 (setq inhibit-splash-screen t)
 
+;; Disable menu bar
+(menu-bar-mode -1)
+
 ;; Configure package manger 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
