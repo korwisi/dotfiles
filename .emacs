@@ -26,6 +26,10 @@
         (package-refresh-contents)
         (package-install 'use-package))
 
+;; Enalbe rainbow delimters
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
 ;; Set tab indent to 4 spaces
 (defun my-generate-tab-stops (&optional width max)
   "Return a sequence suitable for `tab-stop-list'."
@@ -143,7 +147,7 @@
  '(flycheck-color-mode-line-face-to-color 'mode-line-buffer-id)
  '(frame-background-mode 'dark)
  '(package-selected-packages
-   '(dart-mode markdown-mode helm-org color-theme-sanityinc-tomorrow afternoon-theme evil))
+   '(rainbow-delimiters dart-mode markdown-mode helm-org color-theme-sanityinc-tomorrow afternoon-theme evil))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    '((20 . "#ff9da4")
