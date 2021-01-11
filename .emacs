@@ -51,8 +51,23 @@
   ))
 
 ;; Helm
-(require 'helm-config)
-(helm-mode 1)
+;; (require 'helm-config)
+;; (helm-mode 1)
+
+;; Ivy and Counsel
+(require 'counsel)
+(require 'ivy-rich)
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x b" . counsel-ibuffer)
+	 ("C-x C-f" . counsel-finde-file)
+	 :map minibuffer-local-map
+	 ("C-r" . counsel-minibuffer-history))
+  :config
+  (setq ivy-initial-inputs-alist nil)) ;; Don't start searches with ^
 
 ;; web-mode
 (require 'web-mode)
@@ -147,7 +162,7 @@
  '(flycheck-color-mode-line-face-to-color 'mode-line-buffer-id)
  '(frame-background-mode 'dark)
  '(package-selected-packages
-   '(rainbow-delimiters dart-mode markdown-mode helm-org color-theme-sanityinc-tomorrow afternoon-theme evil))
+   '(ivy-rich counsel rainbow-delimiters dart-mode markdown-mode helm-org color-theme-sanityinc-tomorrow afternoon-theme evil))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    '((20 . "#ff9da4")
