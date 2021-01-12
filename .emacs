@@ -4,6 +4,13 @@
 ;; Disable menu bar
 (menu-bar-mode -1)
 
+;; Disable tool bar
+(tool-bar-mode -1)
+
+;; Disable scroll bar
+(pcase system-type
+	('gnu/linux (toggle-scroll-bar -1)))
+
 ;; Enable line numbers
 (column-number-mode)
 (global-display-line-numbers-mode t)
@@ -25,6 +32,10 @@
 (unless (package-installed-p 'use-package)
         (package-refresh-contents)
         (package-install 'use-package))
+
+;; Font settings
+(pcase system-type
+  ('gnu/linux (set-face-attribute 'default nil :font "Fira Code Retina")))
 
 ;; Enalbe rainbow delimters
 (require 'rainbow-delimiters)
@@ -58,12 +69,15 @@
 (require 'counsel)
 (require 'ivy-rich)
 (use-package ivy-rich
+  :after ivy
   :init
   (ivy-rich-mode 1))
 (use-package counsel
+  :after ivy
+  :ensure t
   :bind (("M-x" . counsel-M-x)
 	 ("C-x b" . counsel-ibuffer)
-	 ("C-x C-f" . counsel-finde-file)
+	 ("C-x C-f" . counsel-find-file)
 	 :map minibuffer-local-map
 	 ("C-r" . counsel-minibuffer-history))
   :config
@@ -145,51 +159,3 @@
   :init (setq markdown-command "multimarkdown"))
 
 ;; Auto stuff
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   (vector "#002451" "#ff9da4" "#d1f1a9" "#ffeead" "#bbdaff" "#ebbbff" "#99ffff" "#ffffff"))
- '(beacon-color "#ff9da4")
- '(custom-enabled-themes '(sanityinc-tomorrow-bright))
- '(custom-safe-themes
-   '("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default))
- '(fci-rule-color "#003f8e")
- '(flycheck-color-mode-line-face-to-color 'mode-line-buffer-id)
- '(frame-background-mode 'dark)
- '(package-selected-packages
-   '(## ivy-rich counsel rainbow-delimiters dart-mode markdown-mode helm-org color-theme-sanityinc-tomorrow afternoon-theme evil))
- '(vc-annotate-background nil)
- '(vc-annotate-color-map
-   '((20 . "#ff9da4")
-     (40 . "#ffc58f")
-     (60 . "#ffeead")
-     (80 . "#d1f1a9")
-     (100 . "#99ffff")
-     (120 . "#bbdaff")
-     (140 . "#ebbbff")
-     (160 . "#ff9da4")
-     (180 . "#ffc58f")
-     (200 . "#ffeead")
-     (220 . "#d1f1a9")
-     (240 . "#99ffff")
-     (260 . "#bbdaff")
-     (280 . "#ebbbff")
-     (300 . "#ff9da4")
-     (320 . "#ffc58f")
-     (340 . "#ffeead")
-     (360 . "#d1f1a9")))
- '(vc-annotate-very-old-color nil)
- '(window-divider-mode nil))
-
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
