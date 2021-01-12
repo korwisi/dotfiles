@@ -162,7 +162,7 @@
  '(flycheck-color-mode-line-face-to-color 'mode-line-buffer-id)
  '(frame-background-mode 'dark)
  '(package-selected-packages
-   '(ivy-rich counsel rainbow-delimiters dart-mode markdown-mode helm-org color-theme-sanityinc-tomorrow afternoon-theme evil))
+   '(## ivy-rich counsel rainbow-delimiters dart-mode markdown-mode helm-org color-theme-sanityinc-tomorrow afternoon-theme evil))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    '((20 . "#ff9da4")
