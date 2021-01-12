@@ -64,13 +64,15 @@
 (require 'counsel)
 (require 'ivy-rich)
 (use-package ivy-rich
+  :after ivy
   :init
   (ivy-rich-mode 1))
 (use-package counsel
+  :after ivy
   :ensure t
   :bind (("M-x" . counsel-M-x)
 	 ("C-x b" . counsel-ibuffer)
-	 ("C-x C-f" . counsel-finde-file)
+	 ("C-x C-f" . counsel-find-file)
 	 :map minibuffer-local-map
 	 ("C-r" . counsel-minibuffer-history))
   :config
@@ -171,7 +173,7 @@
  '(frame-background-mode (quote dark))
  '(package-selected-packages
    (quote
-    (haskell-mode ivy-rich counsel rainbow-delimiters dart-mode markdown-mode helm-org color-theme-sanityinc-tomorrow afternoon-theme evil)))
+    (counsel ## haskell-mode ivy-rich rainbow-delimiters dart-mode markdown-mode helm-org color-theme-sanityinc-tomorrow afternoon-theme evil)))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
