@@ -4,6 +4,12 @@
 ;; Disable menu bar
 (menu-bar-mode -1)
 
+;; Disable tool bar
+(tool-bar-mode -1)
+
+;; Disable scroll bar
+(toggle-scroll-bar -1)
+
 ;; Enable line numbers
 (column-number-mode)
 (global-display-line-numbers-mode t)
@@ -61,6 +67,7 @@
   :init
   (ivy-rich-mode 1))
 (use-package counsel
+  :ensure t
   :bind (("M-x" . counsel-M-x)
 	 ("C-x b" . counsel-ibuffer)
 	 ("C-x C-f" . counsel-finde-file)
@@ -155,17 +162,20 @@
  '(ansi-color-names-vector
    (vector "#002451" "#ff9da4" "#d1f1a9" "#ffeead" "#bbdaff" "#ebbbff" "#99ffff" "#ffffff"))
  '(beacon-color "#ff9da4")
- '(custom-enabled-themes '(sanityinc-tomorrow-bright))
+ '(custom-enabled-themes (quote (sanityinc-tomorrow-bright)))
  '(custom-safe-themes
-   '("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default))
+   (quote
+    ("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default)))
  '(fci-rule-color "#003f8e")
- '(flycheck-color-mode-line-face-to-color 'mode-line-buffer-id)
- '(frame-background-mode 'dark)
+ '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
+ '(frame-background-mode (quote dark))
  '(package-selected-packages
-   '(ivy-rich counsel rainbow-delimiters dart-mode markdown-mode helm-org color-theme-sanityinc-tomorrow afternoon-theme evil))
+   (quote
+    (haskell-mode ivy-rich counsel rainbow-delimiters dart-mode markdown-mode helm-org color-theme-sanityinc-tomorrow afternoon-theme evil)))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
-   '((20 . "#ff9da4")
+   (quote
+    ((20 . "#ff9da4")
      (40 . "#ffc58f")
      (60 . "#ffeead")
      (80 . "#d1f1a9")
@@ -182,7 +192,7 @@
      (300 . "#ff9da4")
      (320 . "#ffc58f")
      (340 . "#ffeead")
-     (360 . "#d1f1a9")))
+     (360 . "#d1f1a9"))))
  '(vc-annotate-very-old-color nil)
  '(window-divider-mode nil))
 
