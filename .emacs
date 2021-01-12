@@ -33,7 +33,8 @@
         (package-install 'use-package))
 
 ;; Font settings
-;;(set-face-attribute 'default nil :font "Fira Code Retina")
+(pcase system-type
+  ('gnu/linux (set-face-attribute 'default nil :font "Fira Code Retina")))
 
 ;; Enalbe rainbow delimters
 (require 'rainbow-delimiters)
