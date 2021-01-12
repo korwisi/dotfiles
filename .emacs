@@ -32,6 +32,9 @@
         (package-refresh-contents)
         (package-install 'use-package))
 
+;; Font settings
+;;(set-face-attribute 'default nil :font "Fira Code Retina")
+
 ;; Enalbe rainbow delimters
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
