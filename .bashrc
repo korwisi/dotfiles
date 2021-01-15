@@ -42,11 +42,11 @@ eval "$(starship init bash)"
 OPSYS=$(uname -s)
 case $OPSYS in
     Darwin)
-	alias vi='/usr/local/bin/emacs-27.1'
+	alias vi='/usr/local/bin/emacs -nw'
         alias vim='/usr/local/bin/vim'
         alias cdr='cd /Users/Kristof/Documents/_Repositories'
         alias cdo='cd /Users/Kristof/ownCloud'
-        alias e='/usr/local/bin/emacs-27.1'
+        alias e='/usr/local/bin/emacs -nw'
         alias python=/usr/local/bin/python3.8
         ## If powerline is used instead of, e.g., starship
         # powerline-daemon -q
