@@ -124,8 +124,12 @@
 
 ;; Enable org mode
 (require 'org)
+(use-package org
+  :config
+  (setq org-ellipsis " ▾"
+	org-hide-emphasis-markers t))
 
-;; Additional org stuff
+;; Make org-bullets nice
 (use-package org-bullets
         :ensure t
         :config
