@@ -8,8 +8,15 @@
 (tool-bar-mode -1)
 
 ;; Disable scroll bar
+(toggle-scroll-bar -1)
+
+;; Fix keyboard behavior on Mac
 (pcase system-type
-	('gnu/linux (toggle-scroll-bar -1)))
+  ('darwin (setq mac-option-modifier nil
+		 mac-command-modifier 'meta
+		 x-select-enable-clipboard t)
+	   (global-set-key (kbd "M-v") 'clipboard-yank)
+	   (global-set-key (kbd "M-c") 'clipboard-kill-ring-save)))
 
 ;; Enable line numbers
 (column-number-mode)
@@ -157,6 +164,7 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
+
 
 ;; Custom
 (custom-set-variables
