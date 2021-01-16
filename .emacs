@@ -42,8 +42,12 @@
 
 ;; Font settings
 (pcase system-type
-  ('gnu/linux (set-face-attribute 'default nil :font "Fira Code Retina"))
-  ('darwin (set-face-attribute 'default nil :font "Fira Code")))
+  ('gnu/linux (set-face-attribute 'default nil :font "Fira Code Retina")
+	      (set-face-attribute 'fixed-pitch nil :font "Fira Code Retina")
+	      (set-face-attribute 'variable-pitch nil :font "Fira Sans" :height 200 :weight 'regular))
+  ('darwin (set-face-attribute 'default nil :font "Fira Code")
+	   (set-face-attribute 'fixed-pitch nil :font "Fira Code")
+	   (set-face-attribute 'variable-pitch nil :font "Fira Sans" :height 200 :weight 'regular)))
 
 ;; Enalbe rainbow delimters
 (require 'rainbow-delimiters)
@@ -122,12 +126,33 @@
 (require 'evil)
 (evil-mode 1)
 
-;; Enable org mode
+;; Enable org-mode
 (require 'org)
+
+;; Configure org-mode
+(defun kk/org-mode-config ()
+  (org-indent-mode)
+  (variable-pitch-mode 1)
+  (visual-line-mode 1))
+
+;; Org-mode font setup
+(defun kk/org-font-config ()
+  ;; Set fixed-pitch where needed
+  (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch))
+
 (use-package org
+  :hook (org-mode . kk/org-mode-config)
   :config
   (setq org-ellipsis " ▾"
-	org-hide-emphasis-markers t))
+	org-hide-emphasis-markers t)
+  (kk/org-font-config))
+
 
 ;; Make org-bullets nice
 (use-package org-bullets
@@ -181,7 +206,7 @@
  '(custom-safe-themes
    '("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default))
  '(package-selected-packages
-   '(magit which-key web-mode use-package telephone-line rainbow-delimiters org-bullets neotree markdown-mode ivy-rich helm-z helm-org evil dart-mode counsel color-theme-sanityinc-tomorrow auto-complete afternoon-theme)))
+   '(visual-fill magit which-key web-mode use-package telephone-line rainbow-delimiters org-bullets neotree markdown-mode ivy-rich helm-z helm-org evil dart-mode counsel color-theme-sanityinc-tomorrow auto-complete afternoon-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
