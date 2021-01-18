@@ -142,7 +142,7 @@ case $OPSYS in
 	     
 	     export EDITOR="/home/kristof/.local/bin/vv"
 	     
-	     PATH=$HOME/.local/bin:~/anaconda3/bin:$PATH
+	     PATH=$HOME/.local/bin:~/anaconda3/bin:~/.cabal/bin:$PATH
 
              ## If powerline is used instead of, e.g., starship
 	     # export POWERLINE_COMMAND=powerline
