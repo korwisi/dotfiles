@@ -151,7 +151,7 @@
   :config
   (setq org-ellipsis " ▾"
 	org-hide-emphasis-markers t)
-  (kk/org-font-config))
+  (add-hook 'org-mode-hook (lambda () (kk/org-font-config))))
 
 
 ;; Make org-bullets nice
