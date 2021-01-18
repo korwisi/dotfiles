@@ -48,3 +48,7 @@ Config { font = "xft:Fira Code Retina:size=10"
        , template = "%cpu% | %multicoretemp% | %memory% * %swap% | %dynnetwork% } \
                     \{ %default:Master%| <fc=#ee9a00>%date%</fc> "
        }
+
+-- Local Variables:
+-- mode: haskell
+-- End:
