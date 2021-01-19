@@ -41,7 +41,11 @@ Config { font = "xft:Fira Code Retina:size=10"
                             , "--normal"   , "green"
                             , "--high"     , "red"
                             ] 10
-           , Run Volume "default" "Master" [] 10
+           , Run Volume "default" "Master" 
+             [ "--template"  , "Vol: <volume>% <volumebar> <status>"
+             , "-f"          , "▮"
+             , "-b"          , "▯"
+             ] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
