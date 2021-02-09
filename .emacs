@@ -1,4 +1,4 @@
-;; Disable the splash screen (to enable it agin, replace the t with 0)
+;; Disable the splash screen 
 (setq inhibit-splash-screen t)
 
 ;; Disable menu bar
