@@ -8,6 +8,10 @@
 (tool-bar-mode -1)
 
 ;; Disable scroll bar
+
+;; Enable show-paren-mode
+(show-paren-mode 1)
+
 (toggle-scroll-bar -1)
 
 ;; Fix keyboard behavior on Mac
@@ -22,6 +26,11 @@
 (column-number-mode)
 (global-display-line-numbers-mode t)
 
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+        (package-refresh-contents)
+        (package-install 'use-package))
+
 ;; Disable line numbers for some modes
 (dolist (mode '(org-mode-hook
 		term-mode-hook
@@ -35,11 +44,6 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
-;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-        (package-refresh-contents)
-        (package-install 'use-package))
-
 ;; Font settings
 (pcase system-type
   ('gnu/linux (set-face-attribute 'default nil :font "Fira Code Retina")
@@ -48,10 +52,6 @@
   ('darwin (set-face-attribute 'default nil :font "Fira Code")
 	   (set-face-attribute 'fixed-pitch nil :font "Fira Code")
 	   (set-face-attribute 'variable-pitch nil :font "Fira Sans" :height 200 :weight 'regular)))
-
-;; Enalbe rainbow delimters
-(require 'rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ;; Set tab indent to 4 spaces
 (defun my-generate-tab-stops (&optional width max)
@@ -64,6 +64,12 @@
 (setq tab-width 4)
 (setq tab-stop-list (my-generate-tab-stops))
 
+;; Rainbow delimters
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
 ;; Autocomplete
 (use-package auto-complete
 :ensure t
@@ -73,20 +79,17 @@
   (global-auto-complete-mode t)
   ))
 
-;; Helm
-;; (require 'helm-config)
-;; (helm-mode 1)
-
 ;; Ivy and Counsel
-(require 'counsel)
-(require 'ivy-rich)
+(use-package ivy
+  :ensure t)
 (use-package ivy-rich
+  :ensure t
   :after ivy
   :init
   (ivy-rich-mode 1))
 (use-package counsel
-  :after ivy
   :ensure t
+  :after ivy
   :bind (("M-x" . counsel-M-x)
 	 ("C-x b" . counsel-ibuffer)
 	 ("C-x C-f" . counsel-find-file)
@@ -96,25 +99,30 @@
   (setq ivy-initial-inputs-alist nil)) ;; Don't start searches with ^
 
 ;; web-mode
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
+(use-package web-mode
+  :ensure t
+  :hook web-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode)))
 
 ;; neotree
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
-(add-hook 'neotree-mode-hook
-          (lambda ()
-            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
+(use-package neotree
+  :ensure t
+  :config
+  (global-set-key [f8] 'neotree-toggle)
+  (add-hook 'neotree-mode-hook
+            (lambda ()
+              (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+              (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+              (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+              (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
 
 ;; Which key?
 (use-package which-key
@@ -123,11 +131,10 @@
         (which-key-mode))
 
 ;; Enable evil mode
-(require 'evil)
-(evil-mode 1)
-
-;; Enable org-mode
-(require 'org)
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode 1))
 
 ;; Configure org-mode
 (defun kk/org-mode-config ()
@@ -147,44 +154,43 @@
   (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch))
 
 (use-package org
+  :ensure t
   :hook (org-mode . kk/org-mode-config)
   :config
   (setq org-ellipsis " ▾"
 	org-hide-emphasis-markers t)
+  ;;  (with-eval-after-load' org-faces
+  ;;			 (kk/org-mode-config)))
   (add-hook 'org-mode-hook (lambda () (kk/org-font-config))))
 
 
 ;; Make org-bullets nice
 (use-package org-bullets
-        :ensure t
-        :config
-        (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  :ensure t
+  :after org
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 ;; Load theme-related stuff
-;;(load-theme 'afternoon t)
-(require 'color-theme-sanityinc-tomorrow)
+(use-package color-theme-sanityinc-tomorrow
+  :ensure t)
 
 ;; Enable telephone-line
-(require 'telephone-line)
-
-;; Enable show-paren-mode
-(show-paren-mode 1)
-
-;; Configure telephone-line
-(setq telephone-line-lhs
+(use-package telephone-line
+  :ensure t
+  :config
+  (setq telephone-line-lhsi
         '((evil   . (telephone-line-evil-tag-segment))
           (accent . (telephone-line-vc-segment
                      telephone-line-erc-modified-channels-segment
                      telephone-line-process-segment))
           (nil    . (telephone-line-minor-mode-segment
                      telephone-line-buffer-segment))))
-(setq telephone-line-rhs
+  (setq telephone-line-rhs
         '((nil    . (telephone-line-misc-info-segment))
           (accent . (telephone-line-major-mode-segment))
           (evil   . (telephone-line-airline-position-segment))))
-
-;; Load telephone-line
-(telephone-line-mode 1)
+  (telephone-line-mode 1))
 
 ;; Add markdown-mode
 (use-package markdown-mode
@@ -195,6 +201,15 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+;; elpher
+(use-package elpher
+  :ensure t
+  :commands elpher)
+
+;; rainbow-mode
+(use-package rainbow-mode
+  :ensure t
+  :commands rainbow-mode)
 
 ;; Custom
 (custom-set-variables
@@ -206,7 +221,7 @@
  '(custom-safe-themes
    '("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default))
  '(package-selected-packages
-   '(rainbow-mode visual-fill magit which-key web-mode use-package telephone-line rainbow-delimiters org-bullets neotree markdown-mode ivy-rich evil dart-mode counsel color-theme-sanityinc-tomorrow auto-complete afternoon-theme)))
+   '(color-theme-sanityinc-tomorrow)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
