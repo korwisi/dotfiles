@@ -49,8 +49,8 @@
   ('gnu/linux (set-face-attribute 'default nil :font "Fira Code Retina")
 	      (set-face-attribute 'fixed-pitch nil :font "Fira Code Retina")
 	      (set-face-attribute 'variable-pitch nil :font "Fira Sans" :height 200 :weight 'regular))
-  ('darwin (set-face-attribute 'default nil :font "Fira Code")
-	   (set-face-attribute 'fixed-pitch nil :font "Fira Code")
+  ('darwin (set-face-attribute 'default nil :font "Fira Code" :height 150)
+	   (set-face-attribute 'fixed-pitch nil :font "Fira Code" :height 150)
 	   (set-face-attribute 'variable-pitch nil :font "Fira Sans" :height 200 :weight 'regular)))
 
 ;; Set tab indent to 4 spaces
