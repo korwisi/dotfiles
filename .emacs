@@ -35,7 +35,8 @@
 (dolist (mode '(org-mode-hook
 		term-mode-hook
 		eshell-mode-hook
-		shell-mode-hook))
+		shell-mode-hook
+		elpher-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Configure package manger 
@@ -204,7 +205,9 @@
 ;; elpher
 (use-package elpher
   :ensure t
-  :commands elpher)
+  :commands elpher
+  :config
+  (add-hook 'elpher-mode-hook (lambda () (visual-fill-column-mode))))
 
 ;; rainbow-mode
 (use-package rainbow-mode
