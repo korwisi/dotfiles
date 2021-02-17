@@ -39,6 +39,7 @@
 		elpher-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
+
 ;; Configure package manger 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -53,6 +54,11 @@
   ('darwin (set-face-attribute 'default nil :font "Fira Code" :height 150)
 	   (set-face-attribute 'fixed-pitch nil :font "Fira Code" :height 150)
 	   (set-face-attribute 'variable-pitch nil :font "Fira Sans" :height 200 :weight 'regular)))
+
+(use-package unicode-fonts
+  :ensure t
+  :config
+  (unicode-fonts-setup))
 
 ;; Set tab indent to 4 spaces
 (defun my-generate-tab-stops (&optional width max)
@@ -205,9 +211,8 @@
 ;; elpher
 (use-package elpher
   :ensure t
-  :commands elpher
-  :config
-  (add-hook 'elpher-mode-hook (lambda () (visual-fill-column-mode))))
+  :after visual-fill-colum
+  :commands elpher)
 
 ;; rainbow-mode
 (use-package rainbow-mode
@@ -221,10 +226,16 @@
 
 (use-package visual-fill-column
   :ensure t
-  :hook (org-mode . visual-fill-column-mode)
+  :hook ((elpher-mode org-mode) . visual-fill-column-mode)
   :custom
   (visual-fill-column-center-text t)
   (visual-fill-column-width 100))
+
+;; gemini-mode
+(use-package gemini-mode
+  :ensure t
+  :after visual-fill-column
+  :hook gemini-mode)
 
 ;; Custom
 (custom-set-variables
@@ -235,7 +246,8 @@
  '(custom-enabled-themes '(sanityinc-tomorrow-night))
  '(custom-safe-themes
    '("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default))
- '(package-selected-packages '(color-theme-sanityinc-tomorrow)))
+ '(package-selected-packages
+   '(unicode-fonts gemini-mode ## color-theme-sanityinc-tomorrow)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
