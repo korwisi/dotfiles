@@ -26,6 +26,12 @@
 (column-number-mode)
 (global-display-line-numbers-mode t)
 
+;; Configure package manger 
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(package-initialize)
+
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
         (package-refresh-contents)
@@ -38,13 +44,6 @@
 		shell-mode-hook
 		elpher-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
-
-;; Configure package manger 
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(package-initialize)
 
 ;; Font settings
 (pcase system-type
@@ -247,7 +246,7 @@
  '(custom-safe-themes
    '("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default))
  '(package-selected-packages
-   '(unicode-fonts gemini-mode ## color-theme-sanityinc-tomorrow)))
+   '(color-theme-sanityinc-tomorrow)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
