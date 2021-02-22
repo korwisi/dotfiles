@@ -236,6 +236,16 @@
   :after visual-fill-column
   :hook gemini-mode)
 
+;; Special functions
+(defun kk/zeichen (NUM)
+  "Insert a random alphanumerics string of length 5.
+The possible chars are: A to Z (excluding I), 2 to 9."
+  (interactive "P")
+  (let* (($charset "ABCDEFGHJKLMNPQRSTUVWXYZ23456789")
+         ($baseCount (length $charset)))
+    (dotimes (_ (if (numberp NUM) (abs NUM) 5))
+      (insert (elt $charset (random $baseCount))))))
+
 ;; Custom
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
