@@ -176,6 +176,8 @@
   (set-face-attribute 'org-meta-line nil
 		      :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil
+		      :inherit 'fixed-pitch)
+  (set-face-attribute 'org-hide nil
 		      :inherit 'fixed-pitch))
 
 (use-package org
