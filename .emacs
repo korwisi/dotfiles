@@ -1,6 +1,9 @@
 ;; Disable the splash screen 
 (setq inhibit-splash-screen t)
 
+;; Set default directory to home directory
+(setq default-directory "~/")
+
 ;; Disable menu bar
 (menu-bar-mode -1)
 
@@ -21,6 +24,10 @@
 		 x-select-enable-clipboard t)
 	   (global-set-key (kbd "M-v") 'clipboard-yank)
 	   (global-set-key (kbd "M-c") 'clipboard-kill-ring-save)))
+
+;; Use gls instead of ls on Mac
+(pcase system-type
+  ('darwin (setq insert-directory-program "/usr/local/bin/gls")))
 
 ;; Enable line numbers
 (column-number-mode)
