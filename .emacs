@@ -262,8 +262,7 @@
 ;; gemini-mode
 (use-package gemini-mode
   :ensure t
-  :after visual-fill-column
-  :hook gemini-mode)
+  :after visual-fill-column)
 
 ;; Special functions
 (defun kk/zeichen (NUM)
