@@ -54,8 +54,8 @@
 
 ;; Font settings
 (pcase system-type
-  ('gnu/linux (set-face-attribute 'default nil :font "Fira Code Retina")
-	      (set-face-attribute 'fixed-pitch nil :font "Fira Code Retina")
+  ('gnu/linux (set-face-attribute 'default nil :font "Fira Code Retina" :height 130)
+	      (set-face-attribute 'fixed-pitch nil :font "Fira Code Retina" :height 130)
 	      (set-face-attribute 'variable-pitch nil :font "Fira Sans" :height 200 :weight 'regular))
   ('darwin (set-face-attribute 'default nil :font "Fira Code" :height 150)
 	   (set-face-attribute 'fixed-pitch nil :font "Fira Code" :height 150)
