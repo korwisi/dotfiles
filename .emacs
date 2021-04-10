@@ -10,11 +10,10 @@
 ;; Disable tool bar
 (tool-bar-mode -1)
 
-;; Disable scroll bar
-
 ;; Enable show-paren-mode
 (show-paren-mode 1)
 
+;; Disable scroll bar
 (toggle-scroll-bar -1)
 
 ;; Fix keyboard behavior on Mac
