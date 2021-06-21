@@ -53,7 +53,7 @@ case $OPSYS in
         # POWERLINE_BASH_CONTINUATION=1
         # POWERLINE_BASH_SELECT=1
         # source /usr/local/lib/python3.8/site-packages/powerline/bindings/bash/powerline.sh
-	export PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+	export PATH="$PATH:/usr/local/sbin:$HOME/.gem/ruby/2.6.0/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 	;;
     Linux)
 	if [ $(uname -n) == "schopenhauer" ]; then
@@ -156,3 +156,12 @@ case $OPSYS in
 	     # fi
 	fi
 esac
+
+##
+# Your previous /Users/kristof/.bash_profile file was backed up as /Users/kristof/.bash_profile.macports-saved_2021-06-06_at_23:44:50
+##
+
+# MacPorts Installer addition on 2021-06-06_at_23:44:50: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
