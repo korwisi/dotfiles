@@ -145,8 +145,17 @@
 ;; Enable evil mode
 (use-package evil
   :ensure t
+  :init
+  (setq evil-want-keybinding nil)
   :config
   (evil-mode 1))
+
+;; evil-collection
+(use-package evil-collection
+  :ensure t
+  :after evil
+  :init
+  (evil-collection-init))
 
 ;; Configure org-mode
 (defun kk/org-mode-config ()
@@ -263,6 +272,10 @@
   :ensure t
   :after visual-fill-column)
 
+;; Magit
+(use-package magit
+  :ensure t)
+
 ;; Special functions
 (defun kk/zeichen (NUM)
   "Insert a random alphanumerics string of length 5.
@@ -282,8 +295,7 @@ The possible chars are: A to Z (excluding I), 2 to 9."
  '(custom-enabled-themes '(sanityinc-tomorrow-night))
  '(custom-safe-themes
    '("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default))
- '(package-selected-packages
-   '(color-theme-sanityinc-tomorrow)))
+ '(package-selected-packages '(color-theme-sanityinc-tomorrow)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
