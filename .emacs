@@ -276,6 +276,19 @@
 (use-package magit
   :ensure t)
 
+(use-package all-the-icons
+  :ensure t)
+
+;; Dashboard
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+
+;; Dashboard settings
+(setq dashboard-set-heading-icons t)
+(setq dashboard-set-file-icons t)
+
 ;; Special functions
 (defun kk/zeichen (NUM)
   "Insert a random alphanumerics string of length 5.
