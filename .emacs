@@ -16,6 +16,9 @@
 ;; Disable scroll bar
 (toggle-scroll-bar -1)
 
+;; Add time stamp
+(add-hook 'before-save-hook 'time-stamp)
+
 ;; Fix keyboard behavior on Mac
 (pcase system-type
   ('darwin (setq mac-option-modifier nil
@@ -288,6 +291,7 @@
 ;; Dashboard settings
 (setq dashboard-set-heading-icons t)
 (setq dashboard-set-file-icons t)
+(setq dashboard-items '((recents  . 10)))
 
 ;; Special functions
 (defun kk/zeichen (NUM)
